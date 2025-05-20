@@ -3,42 +3,42 @@
     "nome": "São Paulo",
     "ano": 1930,
     "titulos": 51,
-    "divisão": "serie A",
+    "divisao": "serie A",
     "pais": "Brasil"
   },
   {
     "nome": "Flamengo",
     "ano": 1895,
     "titulos": 70,
-    "divisão": "serie A",
+    "divisao": "serie A",
     "pais": "Brasil"
   },
   {
     "nome": "Real Madrid",
     "ano": 1902,
     "titulos": 98,
-    "divisão": "La Liga",
+    "divisao": "La Liga",
     "pais": "Espanha"
   },
   {
     "nome": "Manchester United",
     "ano": 1878,
     "titulos": 66,
-    "divisão": "Premier League",
+    "divisao": "Premier League",
     "pais": "Inglaterra"
   },
   {
     "nome": "Bayern de Munique",
     "ano": 1900,
     "titulos": 82,
-    "divisão": "Bundesliga",
+    "divisao": "Bundesliga",
     "pais": "Alemanha"
   },
   {
     "nome": "Boca Juniors",
     "ano": "198831",
     "titulos": "124111",
-    "divisão": "Primera División",
+    "divisao": "Primera División",
     "pais": "Argentina",
     "divisao": "primerita"
   },
@@ -47,6 +47,13 @@
     "ano": "212",
     "titulos": "212",
     "divisao": "Serie A",
+    "pais": "Brasil"
+  },
+  {
+    "nome": "sla",
+    "ano": "212",
+    "titulos": "212",
+    "divisao": "Serie B",
     "pais": "Brasil"
   }
 ]
