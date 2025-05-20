@@ -8,29 +8,29 @@ const port = 3000;
 const timesPath = path.join(__dirname, 'times.json');
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 let timesData = fs.readFileSync(timesPath, 'utf-8');
 let times = JSON.parse(timesData);
 
-function salvarDados(){
+function salvarDados() {
     fs.writeFileSync(timesPath, JSON.stringify(times, null, 2));
 }
 
-app.get('/index', (req, res) =>{
+app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname, '/html/index.html'));
-}) 
+})
 
-app.get('/atualizar-time', (req, res) =>{
+app.get('/atualizar-time', (req, res) => {
     res.sendFile(path.join(__dirname, '/html/atualizar-time.html'));
-}) 
+})
 
-app.post('/atualizar-time', (req, res) =>{
-    const { nome, ano, titulos, divisao, pais} = req.body
+app.post('/atualizar-time', (req, res) => {
+    const { nome, ano, titulos, divisao, pais } = req.body
 
     const timeIndex = times.findIndex(time => time.nome.toLowerCase() === nome.toLowerCase());
 
-    if(timeIndex === -1){
+    if (timeIndex === -1) {
         res.send('<h1>Não foi encontrado nenhum time com esse nome</h1>')
         return
     }
@@ -46,9 +46,9 @@ app.post('/atualizar-time', (req, res) =>{
 
 })
 
-app.get('/adicionar-time', (req, res) =>{
+app.get('/adicionar-time', (req, res) => {
     res.sendFile(path.join(__dirname, '/html/adicionar-time.html'));
-}) 
+})
 
 app.post('/adicionar-time', (req, res) => {
     const novotime = req.body;
@@ -66,25 +66,25 @@ app.post('/adicionar-time', (req, res) => {
 });
 
 
-app.get('/excluir-time', (req, res) =>{
+app.get('/excluir-time', (req, res) => {
     res.sendFile(path.join(__dirname, '/html/excluir-time.html'));
 })
 
-app.post('/excluir-time', (req, res) =>{
-    const{nome} = req.body;
-   
+app.post('/excluir-time', (req, res) => {
+    const { nome } = req.body;
+
     const timeIndex = times.findIndex(time => time.nome.toLowerCase() === nome.toLowerCase());
-   
-    if(timeIndex === -1){
+
+    if (timeIndex === -1) {
         res.send('<h1>time não encontrado.<h1/>');
         return;
     }
-    else{
+    else {
         times.splice(timeIndex, 1);
         salvarDados();
-        res.send(`<h1>O time ${nome} foi excluido<h1/>`);  
+        res.send(`<h1>O time ${nome} foi excluido<h1/>`);
     }
-   
+
 });
 
 function buscarTimePorNomeOuPais(pesquisa) {
@@ -92,20 +92,20 @@ function buscarTimePorNomeOuPais(pesquisa) {
     let timeEncontrado = ''
 
     times.forEach(time => {
-        if(time.nome.toLowerCase() === pesquisa.toLowerCase()|| time.país.toLowerCase() === pesquisa.toLowerCase()){
+        if (time.nome.toLowerCase() === pesquisa.toLowerCase() || time.pais.toLowerCase() === pesquisa.toLowerCase()) {
             timeEncontrado += `${JSON.stringify(time, null, 2)}`;
         }
-        else if(pesquisa === 'all'){
+        else if (pesquisa === 'all') {
             timeEncontrado = JSON.stringify(times, null, 2);
         }
     });
 
-    return timeEncontrado; 
+    return timeEncontrado;
 }
 
-app.get('/buscar-time', (req, res) =>{
+app.get('/buscar-time', (req, res) => {
     res.sendFile(path.join(__dirname, '/html/buscar-time.html'));
-}) 
+})
 
 app.post('/buscar-time', (req, res) => {
 
